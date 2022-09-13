@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1.0">
+                <script src="https://cdn.tailwindcss.com"></script>
+                <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+                <script src="app.js"></script>
+                
+
+                <title>Alpine Js Course Components</title>
+
+                <style>
+                    [x-cloak] {
+                        display: none !important;
+                    }
+                </style>
+
+    </head>
+    <body x-data x-cloak class="font-serif bg-gray-100 w-full">
+        <!-- Example1 Dropdown-->
+        <div x-data="{clicked: false}">
+            <p @click="clicked = !clicked" :style="{Color: clicked ? 'blue' : ''}" class="cursor-pointer text-gray-700 text-xl tracking-widest mx-8 py-4" >Dropdown Menu</p>
+            <div x-data="{open: false}" class="flex flex-col items-start">
+                <button @click="open = true" class="bg-red-700 text-gray-200 rounded-full text-sm py-2 px-8 hover:bg-blue-700 ml-16 flex flex-row items-center justify-center">Dropdown<span class="px-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" :class="{'rotate-90': open}" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 transition-all">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                      </svg>
+                      
+                  </span></button>
+                
+               
+                    <div x-show="open" x-cloak @click.outside="open= false" x-transition.duration.500ms x-transition.scale.50 class="flex flex-col items-center bg-blue-400 text-gray-200 mx-2 mt-2 px-16 py-4 shadow-lg">
+                        <ul class="flex flex-col items-center justify-center">
+                           <a href="#" class=""><li class="py-2 hover:text-gray-600 flex flex-row items-center justify-center"><span class="mx-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          </span>Open</li></a>
+                           <a href="#"><li class="py-2 hover:text-gray-600 flex flex-row items-center justify-center"><span class="mx-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                          </svg>
+                          </span>Edit</li></a>
+                           <a href="#"><li class="py-2 hover:text-gray-600 flex flex-row items-center justify-center"><span class="mx-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                          </svg>
+                          </span>Delete</li></a>
+                          
+                        </ul>
+                    </div>
+             
+                
+    
+            </div>
+    
+        </div>
+       
+      
+
+<!--Example 2 Modal-->
+<div x-data="{clicked: false}" class="w-full">
+    <p @click="clicked = !clicked" :style="{Color: clicked ? 'blue' : ''}" class="cursor-pointer text-gray-700 text-xl tracking-widest mx-8 py-4" >Modal</p>
+    
+    <div x-data="{modal: false,
+        accept(){
+            console.log('subscribed')
+        }
+    }" class="flex flex-col items-start">
+        <button @click="modal = true" class="bg-blue-700 text-gray-200 rounded-full text-sm py-2 px-8 hover:bg-red-700 ml-16 flex flex-row items-center justify-center">Subscribe to our news letters<span class="px-1">
+</button>
+        
+       <template x-teleport="#mod">
+        <div x-show="modal" x-cloak x-transition.duration.500ms class="flex flex-col items-center text-gray-400 sm:px-64 py-12 shadow-lg fixed top-0 bottom-0 right-0 left-0 bg-black/40">
+            
+            <div @click.outside="modal= false" class="bg-gray-100 py-8 rounded-lg border-b-2 border-red-700 mx-4 shadow-xl">
+                
+                <div class="flex flex-row justify-end items-end px-8">
+                    <button @click="modal = false"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      </button>
+                </div>
+                
+
+                <div class="flex flex-col justify-center items-center w-full">
+                    <p class="text-2xl pt-2 animate-pulse text-center">Subscribe to get News Update</p>
+                   </div>
+
+                   <div class="flex flex-col justify-center items-center w-full">
+                    <p class="text-sm py-4 px-4 text-center">Beautiful hand-crafted SVG icons, by the makers of Tailwind CSS.For primary navigation and marketing sections, with an outlined appearance.
+                    </p>
+                   </div>
+                
+                    <form class="flex flex-col sm:flex-row items-center justify-center w-full">
+                    <label class="sr-only" for="email"></label>
+                <input type="email" placeholder="Email Address" class="rounded-lg border-2 mt-4 border-gray-400 py-2 px-4 w-80 mx-2 text-gray-700 bg-gray-300 shadow">
+                <button @click="accept" class="bg-red-700 rounded-full mt-4 px-4 py-2 hover:bg-opacity-95 shadow text-gray-200">Subscribe</button>
+                    </form>
+
+                    <footer class="font-light text-sm flex mt-4 text-gray-300 flex-col justify-center items-center">Copyright@2022. smartconcept </footer>
+           
+                </div>
+            
+            
+           
+        </div>
+       </template>
+           
+    </div>
+
+</div>
+
+
+
+
+
+<!--Tabs-->
+<div x-data="{clicked: false}" class="w-full">
+    <p @click="clicked = !clicked" :style="{Color: clicked ? 'blue' : ''}" class="cursor-pointer text-gray-700 text-xl tracking-widest mx-8 mt-4" >Tabs</p>
+   </div>
+
+
+<div x-data="{tabs: ['Home', 'Users', 'Settings', 'orders'],
+activeTab: 'Home'
+
+}" class="flex flex-col justify-center text-gray-600 text-md mt-4">
+
+
+<div class="flex flex-row justify-start mx-4 items-center text-gray-600 text-md">
+    
+    <template x-for="tab in tabs" :key="tab"> 
+        <a href="#" @click="activeTab = tab" x-text="tab" class="py-2 px-4 bg-gray-200 border border-gray-400" :class="{'bg-blue-800': activeTab === tab, 'text-gray-200': activeTab === tab, 'border-gray-500': activeTab === tab}"></div>
+        </a>
+        </template> 
+
+
+</div>
+
+
+<div class="flex flex-row justify-start items-center mx-4 ">
+    <div class="max-w-4xl md:w-1/2 w-full">
+        <div class="flex flex-col bg-gray-300 mt-2 px-8 border border-gray-400 rounded-b shadow">
+            <div x-show="activeTab === 'Home'" x-transition>Home</div>
+        
+            <div x-show="activeTab === 'Users'" x-transition>Users</div>
+        
+            <div x-show="activeTab === 'Settings'" x-transition>Settings</div>
+
+            <div x-show="activeTab === 'orders'" x-transition>Orders</div>
+        </div>
+            
+    </div>
+</div>
+
+
+
+</div>
+
+       
+
+
+
+
+<!---Carousel-->
+<!--Heroicons.com to search icons-->
+<!--search for Tesla-->
+
+<div x-data="{clicked: false}" class="w-full">
+    <p @click="clicked = !clicked" :style="{Color: clicked ? 'blue' : ''}" class="cursor-pointer text-gray-700 text-xl tracking-widest mx-8 mt-4" >Carousel</p>
+   </div>
+
+<div x-data="{images: ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg'],
+activeImage: null,
+prev(){
+    const index = this.images.indexOf(this.activeImage)
+    if(index === 0) return;
+    this.activeImage = this.images[index - 1]
+},
+next(){
+    const index = this.images.indexOf(this.activeImage)
+    if(index === this.images.length - 1) return
+    this.activeImage = this.images[index + 1]
+},
+init(){
+    this.activeImage = this.images.length > 0 ? this.images[0] : null
+}
+}" class="">
+
+<div class="relative w-full md:w-1/2 mt-4">
+    <template x-for="image in images" :key="image">
+        <img x-show="activeImage === image" :src="image" x-transition alt="">
+    </template>
+
+    <a @click.prevent="prev" class="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+    </a>
+    <a @click.prevent="next" class="cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+          
+
+    </a>
+
+
+</div>
+
+
+</div>
+
+
+
+<!--loops-->
+<div x-data="{clicked: false}" class="w-full">
+    <p @click="clicked = !clicked" :style="{Color: clicked ? 'blue' : ''}" class="cursor-pointer text-gray-700 text-xl tracking-widest mx-8 mt-4" >Carousel with loop</p>
+   </div>
+<div x-data="{images: ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg'],
+activeImage: null,
+prev(){
+    let index = this.images.indexOf(this.activeImage)
+    if(index === 0) 
+    index = this.images.length
+    this.activeImage = this.images[index - 1]
+},
+next(){
+    let index = this.images.indexOf(this.activeImage)
+    if(index === this.images.length - 1) 
+    index = -1
+    this.activeImage = this.images[index + 1]
+},
+init(){
+    this.activeImage = this.images.length > 0 ? this.images[0] : null
+}
+}">
+
+<div class="relative w-full md:w-1/2 mt-4">
+    <template x-for="image in images" :key="image">
+        <div x-show="activeImage === image" x-transition class="aspect-w-3 aspect-h-1">
+            <img :src="image" x-transition alt="" class="object-cover">
+        </div>
+        
+    </template>
+
+    <a @click.prevent="prev" class="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 text-white">
+       <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>-->
+    </a>
+    <a @click.prevent="next" class="cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 text-white">
+       <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>-->
+          
+
+    </a>
+
+
+</div>
+
+
+<div class="flex flex-row w-full md:w-1/2 mt-4">
+<template x-for="image in images">
+        <a @click.prevent="activeImage = image" x-transition class="cursor-pointer px-2 hover:border-gray-500 border-4 border-white"><img :src="image"></a>
+          
+</template>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<!--Accordion-->
+<div x-data="{clicked: false}" class="w-full">
+    <p @click="clicked = !clicked" :style="{Color: clicked ? 'blue' : ''}" class="cursor-pointer text-gray-700 text-xl tracking-widest mx-8 mt-4" >Accordion</p>
+   </div>
+
+   <div x-data="{
+    items: [
+    {title: 'Home', body: 'Our Home'},
+    {title: 'About', body: 'Who we are'},
+    {title: 'Services', body: 'What we do'},
+    {title: 'Contact', body: 'Send Us A Message'},
+    ],
+    activeItem: null,
+    selectItem(item){
+        if(this.activeItem === item){
+            this.activeItem = null
+        } else{
+            this.activeItem = item
+        }
+    }
+   }">
+
+   <div>
+    <template x-for="item in items" :key="item">
+        <div class="bg-black/50 text-gray-200 w-1/2 md:w-1/6 flex flex-col">
+            <div @click.prevent="selectItem(item)" class="cursor-pointer text-gray-200 text-xl py-4 px-4 border border-gray-200 flex flex-row justify-between items-center">
+                <span x-text="item.title"></span>
+
+                 <svg :class="{'rotate-90': activeItem === item}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-10 transition-all">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </div>
+
+            <a x-show.prevent="activeItem === item" x-html="item.body" x-transition class="cursor-pointer text-gray-700 bg-gray-200 text-sm py-4 px-4 text-lg border border-gray-200"></a>
+        </div>
+
+    </template>
+   </div>
+
+   </div>
+
+
+
+
+
+
+
+  
+
+<!--Notification-->
+<div x-data="{clicked: false}" class="w-full">
+    <p @click="clicked = !clicked" :style="{Color: clicked ? 'blue' : ''}" class="cursor-pointer text-gray-700 text-xl tracking-widest mx-8 mt-4" >Notification without progress bar with timeout</p>
+   </div>
+
+   <div class="flex flex-row items-center justify-center">
+
+    <div x-data="{visible: false, 
+        timeout:10000,
+        percent: 0,
+        init(){
+            setTimeout(() => {
+                this.visible = true
+            }, 3000),
+            setTimeout(() => {
+                this.visible = false
+            }, this.timeout)
+    }
+}" x-show="visible" class="flex flex-col justify-center items-center relative bg-blue-500 text-gray-200 max-w-4xl rounded-lg mx-4 mb-8 pb-4">
+        <div class="text-xl px-4 pt-4 text-center">Benign Prostatis Hyperplasia</div>
+        <div class="text-sm px-4 pt-4 item-center text-center">Benign prostatic hyperplasia (BPH) also known as benign prostatic hypertrophy has commonly been diagnosed among aged population with increasing prevalence (Chughtai et al, 2016). </div>
+        <button @click="visible = false" class="text-gray-200 rounded-full bg-black/10 absolute right-8 top-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 hover:text-gray-800">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+        </button>
+
+        
+    
+        </div>
+    </div>
+
+
+   </div>
+
+
+
+
+
+
+
+
+<!--Notification with progress bar and timeout-->
+<div x-data="{clicked: false}" class="w-full">
+    <p @click="clicked = !clicked" :style="{Color: clicked ? 'blue' : ''}" class="cursor-pointer text-gray-700 text-xl tracking-widest mx-8 mt-4" >Notification with Progress Bar and timout </p>
+   </div>
+
+   <div class="flex flex-row items-center justify-center">
+
+    <div x-data="{visible: true, 
+        timeout: 1000, 
+        percent: 0,
+        init(){
+        setTimeout(() => {
+           this.visible = false;
+       }, this.timeout)
+       const startDate = Date.now();
+       const futureDate = Date.now() + this.timeout;
+       setInterval(() => {
+        const date = Date.now()
+        this.percent = (date - startDate) * 100 / (futureDate - startDate)
+       }, 30)
+    }
+}" x-show="visible" class="flex flex-col justify-center items-center relative bg-blue-500 text-gray-200 max-w-4xl rounded-lg mx-4 mb-8 pb-4">
+        <div class="text-xl px-4 pt-4 text-center">Benign Prostatis Hyperplasia</div>
+        <div class="text-sm px-4 pt-4 item-center text-center">Benign prostatic hyperplasia (BPH) also known as benign prostatic hypertrophy has commonly been diagnosed among aged population with increasing prevalence (Chughtai et al, 2016). </div>
+        <button @click="visible = false" class="text-gray-200 rounded-full bg-black/10 absolute right-8 top-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 hover:text-gray-800">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+        </button>
+
+        
+    
+    <div class="absolute left-0 right-0 bottom-0 h-1 bg-black/20 mt-8 rounded-lg"
+    :style="{'width': `${percent}%`}">
+
+    </div>
+
+    
+    </div>
+
+
+   </div>
+
+
+
+
+
+
+<!--Notification with progress bar and timeout and timein-->
+<div x-data="{clicked: false}" class="w-full">
+    <p @click="clicked = !clicked" :style="{Color: clicked ? 'blue' : ''}" class="cursor-pointer text-gray-700 text-xl tracking-widest mx-8 mt-4" >Notification with Progress Bar and timout/timein </p>
+   </div>
+
+   <div class="flex flex-row items-center justify-center">
+
+    <div x-data="{visible: false, 
+        timeout: 20000, 
+        percent: 0,
+        init(){
+        setTimeout(() => {
+           this.visible = false;
+       }, this.timeout),
+       setTimeout(() => {
+        this.visible = true;
+       }, 6000)
+       const startDate = Date.now();
+       const futureDate = Date.now() + this.timeout;
+       setInterval(() => {
+        const date = Date.now()
+        this.percent = (date - startDate) * 100 / (futureDate - startDate)
+       }, 30)
+    }
+}" x-show="visible" class="flex flex-col justify-center items-center relative bg-blue-500 text-gray-200 max-w-4xl rounded-lg mx-4 mb-8 pb-4">
+        <div class="text-xl px-4 pt-4 text-center">Benign Prostatis Hyperplasia</div>
+        <div class="text-sm px-4 pt-4 item-center text-center">Benign prostatic hyperplasia (BPH) also known as benign prostatic hypertrophy has commonly been diagnosed among aged population with increasing prevalence (Chughtai et al, 2016). </div>
+        <button @click="visible = false" class="text-gray-200 rounded-full bg-black/10 absolute right-8 top-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 hover:text-gray-800">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+        </button>
+
+        
+    
+    <div class="absolute left-0 right-0 bottom-0 h-1 bg-black/20 mt-8 rounded-lg"
+    :style="{'width': `${percent}%`}">
+
+    </div>
+
+    
+    </div>
+
+
+   </div>
+
+
+
+
+
+
+
+
+
+
+<!--Popover-->
+<div x-data="{clicked: false}" class="w-full">
+    <p @click="clicked = !clicked" :style="{Color: clicked ? 'blue' : ''}" class="cursor-pointer text-gray-700 text-xl tracking-widest mx-8 mt-4" >Popover</p>
+   </div>
+
+
+<div x-data="{
+    title: 'Home',
+    message: 'body',
+    show: false,
+    showPopover(){
+        console.log(this.$refs.button, this.$refs.popover)
+        this.show = !this.show
+    }
+}" class="relative">
+
+
+<div class="flex flex-col justify-center items-center ">
+    <button x-ref="button" @click="showPopover" class="bg-red-700 rounded-full mt-4 px-8 py-1 hover:bg-opacity-95 shadow text-gray-200 flex flex-row justify-between items-center">
+        <span x-text="title" class="pr-2"> </span>
+
+
+                 <svg :class="{'rotate-90': show}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-8 transition-all">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+    </button>          
+</div>
+
+<div class="flex flex-col justify-center items-center">
+    <div x-ref="popover" x-show="show" class="flex flex-row justify-between items-center bg-black/50 text-gray-200 w-1/6 px-4 py-4 absolute bottom-[100%] shadow-xl">
+        <div x-text="message"></div>
+    
+        <svg @click="show = false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 hover:text-gray-800">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+    
+    </div>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+   <div id="mod" class="flex flex-col items-center justify-center"></div>
+   
+    </body>
+</html>
+    
+

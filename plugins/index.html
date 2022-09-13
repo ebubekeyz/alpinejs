@@ -1,0 +1,170 @@
+<!DOCTYPE <html5>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+            
+            
+            <title>plugins</title>
+
+            <!--Alpine Plugins-->
+            <!--Mask-->
+            <script defer src="https://unpkg.com/@alpinejs/mask@3.10.2/dist/cdn.min.js"></script>
+
+            <!--Mask-->
+            <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+
+            
+            <!--Focus-->
+            <script defer src="https://unpkg.com/@alpinejs/focus@3.10.2/dist/cdn.min.js"></script>
+
+
+             
+            <!--Morph-->
+            <script defer src="https://unpkg.com/@alpinejs/morph@3.x.x/dist/cdn.min.js"></script>
+
+
+            
+            <!--Collapse-->
+            <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+
+                        <!--Intersect plugin-->
+            <script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+
+            <!--Alpine CORE-->
+            <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+            <script src="https://cdn.tailwindcss.com"></script>
+            
+        </head>
+        <body class="font-serif">
+<!--Date Input-->
+<div x-data>
+    <form method="post" action="" class="my-8 flex flex-row justify-center items-center">
+    
+        <input type="text" x-data x-mask="99/99/9999" placeholder="MM/DD/YYYY" class="mx-2 text-gray-700 rounded-lg py-2 px-4 border border-gray-400 w-1/4 bg-gray-300">
+
+        <!--CreditCard input-->
+        <input   
+        x-mask:dynamic="
+        $input.startsWith('34') || $input.startsWith('37')
+        ? '9999 999999 99999' : '9999 9999 9999 9999'
+        "
+        class="mx-2 text-gray-700 rounded-lg py-2 px-4 border border-gray-400 w-1/4 bg-gray-300">
+
+        <!---Money input-->
+        <input x-data x-mask:dynamic="$money($input)" class="mx-2 text-gray-700 rounded-lg py-2 px-4 border border-gray-400 w-1/4 bg-gray-300">
+
+</form>
+</div>
+
+
+<!--Intersect-->
+<div x-data="{shown: false}" x-intersect="shown = true">
+
+<div x-show="shown" x-transition class="text-4xl">
+    Hello My name is Ebube
+</div>
+
+</div>
+
+<div x-data="{dataSrc: '1.jpg', src: null}" x-intersect="src= dataSrc" class="">
+
+<img x-show="src" :src="src" x-transition class="w-1/3 border border-gray-800">
+
+</div>
+
+
+<!---Persist   sessionStorage or localStorage-->
+<div x-data="{count: $persist(0).as('my-count').using(sessionStorage)}" class="my-4">
+
+<button @click="count++" class="rounded-full py-2 px-4 bg-blue-700 text-sm text-gray-200">Increment</button>
+
+<div x-text="count" class="text-gray-700 text-xl"></div>
+
+</div>
+
+
+<div x-data="{count: $persist(0)}">
+    <input x-model="count" class="mx-2 text-gray-700 rounded-lg py-2 px-4 border border-gray-400 w-1/4 bg-gray-300">
+    <button @click="count++" class="rounded-full py-2 px-4 bg-blue-700 text-sm text-gray-200">Increment</button>
+
+</div>
+
+
+<!--Focus using x-trap-->
+
+<div x-data="{open: false}" class="my-4">
+
+    <button @click="open = !open" class="rounded-full py-2 px-4 bg-blue-700 text-sm text-gray-200">Click to open</button>
+
+    <div x-show="open" x-trap="open" class="flex flex-col my-4">
+        <p>hit the Tab button</p>
+        <input type="text" class="my-4 mx-2 text-gray-700 rounded-full py-2 px-4 border border-gray-400 w-1/4 bg-gray-300" placeholder="First Name">
+        <input type="text" class="mx-2 text-gray-700 rounded-full py-2 px-4 border border-gray-400 w-1/4 bg-gray-300" placeholder="Last Name">
+
+        <button @click=" = false" class="my-2 w-1/6 rounded-full py-2 px-4 bg-blue-700 text-sm text-gray-200">submit</button>
+
+    </div>
+
+</div>
+            
+
+
+
+
+
+<!--Expanded-->
+    <div x-data="{expanded: false}">
+        <p class="text-2xl font-bold">Heading</p>
+        <div x-show="expanded" x-collapse.min.20 class="text-sm w-1/2">
+            VideoLAN and the VLC development team present VLC 3.0.16 "Vetinari".
+            VLC 3.0.16 is a small update to...... VLC 3.0 branch: it fixes playback on some Windows versions, 
+            and some video graphic cards; it fixes playback of some DVD images and MP4 files; 
+            it also adds supports for Opus and Alac in Wav files, and fixes other minor and security issues.     </div>
+        <button @click="expanded = !expanded" x-text="expanded ? 'Reade Less' : 'Read More'" class="my-2 w-1/6 rounded-full py-2 px-4 border border-blue-700 text-sm text-gray-700">Read More</button>
+        
+    </div>
+
+
+    <!---?(IF)   :(ELSE)-->
+
+
+<!---Morph-->
+<div id="div" x-data="{message: 'Change me then press the button!'}">
+    <input type="text" x-model="message" class="mx-2 text-gray-700 rounded-full py-2 px-4 border border-gray-400 w-1/4 bg-gray-300" placeholder="Last Name">
+    <span x-text="message"></span>  
+</div>
+
+<button class="my-2 w-1/6 rounded-full py-2 px-4 border border-blue-700 text-sm text-gray-700">Run Morph</button>
+    
+
+    <script>
+        document.querySelector('button').addEventListener('click', () => {
+            let el = document.querySelector("#div");
+            Alpine.morph(el,
+            `
+            <div id="div" x-data="{message: 'change me then press the button'}">
+                <h2>See how many elements have been added</h2>
+
+                <input type="text" x-model="message" class="mx-2 text-gray-700 rounded-full py-2 px-4 border border-gray-400 w-1/4 bg-gray-300" placeholder="Last Name">
+                <span x-text="message"></span>
+
+                <h2>But the State of the component hasnt changed. Magical</h2>
+                </div>
+            `
+        );
+        });
+        </script>
+
+
+
+            </body>
+
+
+
+
+
+
+            </html>

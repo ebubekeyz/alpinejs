@@ -1,0 +1,532 @@
+<!DOCTYPE <html5>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+            <script src="https://cdn.tailwindcss.com"></script>
+            <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+            <title>Project</title>
+
+            
+        </head>
+        <body class="font-serif text-gray-700 bg-violet-200">
+            <!--Header-->
+            <header class="flex flex-col md:justify-center md:items-center bg-gray-200 shadow-xl text-gray-600">
+                <div class="max-w-4xl">
+                    <div class="flex flex-row justify-between items-center text-md py-4 mx-4">
+                        <p class="tracking-widest animate-pulse pr-32 text-xl ">Smartconcept</p>
+
+
+
+                       <div class="hidden md:block">
+                        
+
+<div x-data="{home: 'Home',
+about: 'About',
+aboutMsg: 'Who we are',
+service: 'Services',
+serviceMsg: 'What we do',
+serviceMsg2: 'What we do',
+contact: 'Contact',
+contactMsg: 'Send Us a Message',
+show: false,
+visible: false,
+open: false
+}">
+
+
+<div class="flex flex-row justify-center items-center">
+    <div class="flex flex-col justify-center items-center">
+        <a href="#" x-text="home" class="px-4"></a>
+        </div>
+        
+        
+        <div class="flex flex-col justify-center items-center">
+            <div @click="show= !show" x-text="about" class="relative text-gray-700 text-md py-2 px-4 cursor-pointer"></div>
+            <a x-show="show" href="#" x-show="show" x-transition x-html="aboutMsg"  @click.outside="show = false" class="bg-gray-600 shadow text-gray-200 text-sm px-8 py-2 absolute bottom-[82%]"></a>
+            </div>
+        
+        
+            <div class="flex flex-col justify-center items-center">
+                <div @click="visible= !visible" x-text="service" class="relative text-gray-700 text-md py-2 px-4 cursor-pointer"></div>
+                <a x-show="visible" href="#" x-show="visible" x-transition  @click.outside="visible = false" x-html="serviceMsg" class="bg-gray-600 shadow text-gray-200 text-sm px-8 py-2 absolute bottom-[82%]"></a>
+            
+            </div>
+        
+        
+                <div class="flex flex-col justify-center items-center">
+                    <div @click="open= !open" x-text="contact" class="relative text-gray-700 text-md py-2 px-4 cursor-pointer"></div>
+                    <a x-show="open" href="#" x-transition @click.outside="open = false" x-html="contactMsg" class="bg-gray-600 shadow text-gray-200 text-sm px-8 py-2 absolute bottom-[82%] text-center"></a>
+                    </div>
+</div>
+
+
+
+
+
+</div>
+
+                       </div>
+                            
+                        
+                        <!--x-data start-->
+                       <div x-data="{modal: false}">
+                        <button @click="modal= true" type="button" class="md:hidden transition delay-150 duration-300" :class="{'rotate-180': modal, 'scale-90': modal}">
+                            <?xml version="1.0" encoding="iso-8859-1"?>
+                            <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                            <svg class="fill-current w-8" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 viewBox="0 0 384.97 384.97" style="enable-background:new 0 0 384.97 384.97;" xml:space="preserve">
+                            <g>
+                                <g id="Menu">
+                                    <path d="M12.03,84.212h360.909c6.641,0,12.03-5.39,12.03-12.03c0-6.641-5.39-12.03-12.03-12.03H12.03
+                                        C5.39,60.152,0,65.541,0,72.182C0,78.823,5.39,84.212,12.03,84.212z"/>
+                                    <path d="M372.939,180.455H12.03c-6.641,0-12.03,5.39-12.03,12.03s5.39,12.03,12.03,12.03h360.909c6.641,0,12.03-5.39,12.03-12.03
+                                        S379.58,180.455,372.939,180.455z"/>
+                                    <path d="M372.939,300.758H12.03c-6.641,0-12.03,5.39-12.03,12.03c0,6.641,5.39,12.03,12.03,12.03h360.909
+                                        c6.641,0,12.03-5.39,12.03-12.03C384.97,306.147,379.58,300.758,372.939,300.758z"/>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                                <g>
+                                </g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            </svg>
+                            
+            
+                          </button>
+
+                          
+                          <template x-teleport="#tel">
+                            <div x-show="modal" x-transition.scale.50 x-transition.duration.500ms @click.outside="modal = false" class="bg-blue-500 text-gray-200">
+                                
+            <div x-data="{items: [
+                {title: 'About', body: 'Who we are', src: '#about'},
+                {title: 'Services', body: 'What we do', src: '#service'},
+                {title: 'Contact', body: 'Send us a message', src: '#contact'},
+                ],
+                activeItem: null,
+                home: 'Home',
+                selectItem(item){
+                    if(this.activeItem === item){
+                        this.activeItem = null
+                    } else{
+                        this.activeItem = item
+                    }
+                }
+            }" class="sm:hidden">
+
+            <div class="flex flex-col justify-center items-center bg-gray-600 ">
+            
+                <div x-text="home" class="hover:bg-black/30 cursor-pointer text-gray-200 flex flex-col items-center justify-center py-4 px-4 text-md w-full"></div>
+                <template x-for="item in items" :key="item">
+                    <div class="flex-col w-full justify-center items-center">
+                        <div @click="selectItem(item)" x-text="item.title" class="hover:bg-black/30 cursor-pointer text-gray-200 flex flex-col items-center justify-center py-4 px-4 text-md"></div>
+
+                    <a x-show="activeItem === item" x-html="item.body" :href="item.src" class="cursor-pointer bg-gray-200 text-gray-700 shadow flex flex-col items-center justify-center py-4 px-4 text-sm"></a>
+
+                    </div>
+                    
+                </template>
+            </div>
+
+
+
+            </div>
+               
+                            </div>
+                                
+                          </template>
+                       
+                        
+
+
+                       </div>
+                        <!--x-data end-->
+
+                    </div>
+
+                </div>
+            </header>
+            <div id="tel" class=""></div>
+<!---End Header-->
+
+
+<!--Start slider-->
+
+
+<div x-data="{image: 'img/man.png',
+words: ['Hi, I am Dr Chris Otene', 'Welcome to my Website'],
+activeWord: null,
+loop(){
+    setInterval(() => {
+        index = this.words.indexOf(this.activeWord)
+        if(index === this.words.length -1) return;
+    
+        this.activeWord = this.words[index + 1]
+    }, 3000)
+},
+init(){
+    this.activeWord = this.words.length > 0 ? this.words[0] : null
+}
+}" class="shadow">
+<div class="flex flex-row justify-center md:justify-around items-center bg-black/40">
+    <img :src="image" class="md:w-1/5 w-1/3 pr-8">
+    
+    
+        <template x-for="word in words" :key="word">
+            <div x-init="loop" x-show="activeWord === word" class="flex flex-row justify-center items-center">
+                <div x-text="word" class="md:text-3xl text-lg font-bold text-center py-4 px-2 text-center w-full"></div>
+            </div>
+           
+        </template>
+    
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Notification-->
+<div class="flex flex-col justify-center items-center mx-4">
+    <div x-data="{
+        visible: false,
+        timeout: 50000,
+        percent: 0,
+        init(){
+            setTimeout(() => {
+                this.visible = false
+            }, this.timeout),
+            setTimeout(() => {
+                this.visible = true
+            },3000)
+            const startDate = Date.now()
+            const futureDate = Date.now() + this.timeout
+            setInterval(() => {
+                const date = Date.now()
+                this.percent = (date - startDate) * 100 / (futureDate - startDate)
+            })
+        }
+
+
+    }" class="border-t-4 border-blue-500 bg-gray-100 text-gray-400 rounded-lg my-4 relative w-full md:w-1/2 mb-4"  x-show="visible" >
+
+
+    <div class="py-8 font-mono tracking-widest flex flex-col justify-center items-center text-gray-800 text-xl">Subscribe to get News Update</div>
+    
+        <div class="flex flex-col md:flex-row justify-center items-center ">
+            
+            
+               
+            
+                <form class="flex flex-row justify-center items-center w-full">
+                    <label for="email" class="sr-only">Email Address</label>
+                    <input type="email" placeholder="Email Address" class="w-1/2 py-2 px-4 rounded-lg bg-gray-600 text-gray-200 focus:bg-gray-200 focus:text-gray-600">
+                    <button class="rounded-lg bg-blue-700 text-gray-200 text-sm py-2 px-4 hover:bg-blue-500 mx-4">Subscribe</button>
+                    </form>
+            
+            <button @click="visible= false" class="absolute top-4 right-4 rounded-full bg-black/40 text-gray-200">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 hover:text-gray-800">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+            </button>
+
+           
+    <div class="absolute left-0 right-0 bottom-0 h-1 bg-black/20 mt-8 rounded-lg"
+    :style="{'width': `${percent}%`}">
+
+    </div>
+            
+        </div>
+
+
+        
+    </div>
+</div>
+<!--End Notification-->
+
+
+
+
+            <!--Body-->
+            <main>
+                <div class="flex flex-col justify-center items-center my-16 mx-4">
+                    <div class="max-w-4xl">
+
+                    
+                        <div class="flex flex-row justify-center items-center w-full">
+                            <p class="text-gray-500 font-bold">_______</p>
+                            <p class="hover:text-gray-900 text-xl md:text-3xl font-bold tracking-widest text-center text-gray-600">Welcome to smartConcept</p>
+                            <p class="text-gray-500 font-bold">_______</p>
+                        
+                        </div>
+
+                        <div class="flex flex-col justify-center items-center py-4 w-full">
+                        <p class="text-base text-gray-500">Welcome to smartConcept</p>
+                        <p class="pt-4 text-sm md:w-1/2 w-full text-gray-500 text-center italic">Do you have any question in mind. Our contact session would enable you send us a message</p>
+                        </div>
+                   
+
+
+
+
+            
+                </div>
+
+
+
+
+
+</div>
+
+                </div>
+                
+          
+
+
+
+
+<div class="bg-gray-100 flex flex-col justify-center items-center">
+    <!--loops-->
+<div class="max-w-4xl">
+  
+    <div x-data="{clicked: false}" class="w-full text-center my-4">
+        <p @click="clicked = !clicked" :class="{'text-gray-900': clicked}" class="text-2xl cursor-pointer text-gray-700 text-xl tracking-widest mx-8 mt-8 font-bold" >About Us</p>
+       </div>
+
+       
+    <div x-data="{images: ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg'],
+    activeImage: 1,
+    
+    loop(){
+        setInterval(() => {
+            index = this.images.indexOf(this.activeImage)
+            if(index === this.images.length - 1) 
+            index = this.images.length;
+            this.activeImage = this.images[index + 1]
+        }, 3000)
+    },
+    init(){
+        this.activeImage = this.images.length > 0 ? this.images[0] : 1
+    }
+    }" class="">
+    
+    <div class="flex md:flex-row flex-col justify-center items-center mx-4 mb-12">
+        <div x-init="loop" class="relative w-full md:w-1/2 mt-4 border-t-8 border-l-8 hover:scale-90 border-blue-400" >
+            <template x-for="image in images" :key="image">
+                <div x-show="activeImage === image" class="aspect-w-3 aspect-h-1">
+                    <img :src="image" x-transition alt="" class="object-cover">
+                </div>
+                
+            </template>    
+        
+            </a>
+    
+        </div>
+    
+    
+    <p class="mt-8 flex md:flex-rowflex-col justify-center items-center w-full text-center text-lg text-gray-500  px-16 italic">Do you have any question in mind. Our contact session would enable you send us a message, and you will receive a quick response from our team  </p>
+
+    </div>
+    
+
+</div>
+                        
+
+    
+
+</div>
+
+
+
+
+
+                        
+<div class="bg-violet-200 py-8 w-full flex flex-col items-center">
+    <h2 class="font-bold text-xl text-gray-500 capitalize">Send us a message</h2>
+    <form action="#" method="post" class="max-w-xl w-full mt-4 text-gray-200 px-8 md:px-0">
+        <div class="flex flex-col md:flex-row md:-mx-2">
+            <label for="first_name" class="sr-only">First Name</label>
+            <input class="bg-gray-300 focus:text-gray-200 focus:bg-gray-600 md:mx-2 mt-4 border text-gray-600 border-gray-400 rounded-lg py-2 px-4 w-full" type="text" placeholder="First name" id="first_name"/>
+            
+            
+            <label for="last_name" class="sr-only">Last Name</label>
+            <input class="bg-gray-300 focus:text-gray-200 focus:bg-gray-600 md:mx-2 mt-4 border text-gray-600 border-gray-400 rounded-lg py-2 px-4 w-full" type="text" placeholder="Last name" id="lastt_name"/>
+
+        </div>
+        <div class="flex flex-row md:-mx-2">
+             
+            
+           
+            <textarea class="bg-gray-300 md:mx-2 focus:text-gray-200 focus:bg-gray-600 text-gray-600 mt-4 border border-gray-400 rounded-lg py-2 px-4 w-full" type="text" placeholder="message here" id="title"></textarea>
+
+
+        </div>
+        <div class="flex flex-col md:flex-row md:-mx-2">
+            <button class="md:mx-2 bg-blue-600 text-sm rounded-lg py-2 px-4 mt-4 w-full hover:bg-blue-500">Send Message</button>
+
+        </div>
+    </form>
+    
+</div>
+               
+                 </form>
+        </div>
+
+        
+        
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!--Example 2 Modal-->
+<div class="flex flex-col justify-center items-center mb-8">
+    <div x-data="{modal: false,
+        accept(){
+            console.log('subscribed')
+        }
+    }" class="flex flex-col">
+    
+        <button @click="modal = true" class="bg-blue-700 text-gray-200 rounded-full text-sm py-2 px-8 hover:bg-red-700 ml-16 flex flex-row items-center justify-center">Subscribe to our news letters<span class="px-1">
+</button>
+        
+       <template x-teleport="#mod">
+        <div x-show="modal" x-cloak x-transition.duration.500ms class="flex flex-col items-center text-gray-400 sm:px-64 py-12 shadow-lg fixed top-0 bottom-0 right-0 left-0 bg-black/40">
+            
+            <div @click.outside="modal= false" class="bg-gray-100 py-8 rounded-lg border-b-4 border-blue-700 mx-4 shadow-xl">
+                
+                <div class="flex flex-row justify-end items-end px-8">
+                    <button @click="modal = false"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      </button>
+                </div>
+                
+
+                <div class="flex flex-col justify-center items-center w-full">
+                    <p class="text-2xl pt-2 animate-pulse text-center">Subscribe to get News Update</p>
+                   </div>
+
+                   <div class="flex flex-col justify-center items-center w-full">
+                    <p class="text-sm py-4 px-4 text-center">Beautiful hand-crafted SVG icons, by the makers of Tailwind CSS.For primary navigation and marketing sections, with an outlined appearance.
+                    </p>
+                   </div>
+                
+                    <form class="flex flex-col sm:flex-row items-center justify-center w-full">
+                    <label class="sr-only" for="email"></label>
+                <input type="email" placeholder="Email Address" class="rounded-lg border-2 mt-4 border-gray-400 py-2 px-4 w-80 mx-2 text-gray-700 bg-gray-300 shadow">
+                <button @click="accept" class="bg-blue-700 rounded-full mt-4 px-4 py-2 hover:bg-opacity-95 shadow text-gray-200">Subscribe</button>
+                    </form>
+
+                    <footer class="font-light text-sm flex mt-4 text-gray-300 flex-col justify-center items-center">Copyright@2022. smartconcept </footer>
+           
+                </div>
+            
+            
+           
+        </div>
+       </template>
+           
+    </div>
+
+</div>
+</div>
+    
+
+
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+            <!--Footer-->
+            <footer class="bg-gray-500 flex flex-col justify-center items-center w-full">
+                <div class="max-w-4xl">
+                    <p class="font-light text-sm text-center text-gray-300 py-8">Copyright 2022@ SmartCooncept</p>
+                </div>
+            </footer>
+
+            <div id="mod" class="flex flex-col items-center justify-center"></div>
+
+
+            <!---Reload Page-->
+<div x-data="{
+    init(){
+        setInterval(() => {
+            location.reload()
+        },60000)
+    }
+}"
+
+></div>
+        </body>
+
+    </html>

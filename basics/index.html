@@ -1,0 +1,665 @@
+<!DOCTYPE html5>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1.0">
+                <script src="https://cdn.tailwindcss.com"></script>
+                <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+                <script src="app.js"></script>
+                
+
+                <title>Alpine Js Course Basics</title>
+
+    </head>
+    <body class="font-serif flex flex-col justify-center items-center w-full">
+      
+
+<!--Example1-->
+ <div class="text-4xl flex flex-row justify-center items-center w-full" x-data="{name: 'Zura', message:'Welcome to my <b> website</b>'}">
+    <p x-text="name" class="px-4"></p>
+    <p x-html="message"></p>
+</div>
+
+<!--Example2
+<div 
+x-data
+x-text="await (await fetch('https://jsonplaceholder.typicode.com/todos/1')).text()">
+</div>-->
+
+
+
+<!--Example 3-->
+
+<div class="flex flex-row justify-center items-center font-bold font-serif text-gray-700 text-xl my-4">
+<div class="cursor-pointer" x-data="{
+    message:'hello world', 
+    change(){
+    this.message = 'ebube'
+}
+}">
+<p x-text="message" @click="change()"></p>
+
+</div>
+</div>
+
+<!--APP.JS example-->
+
+<div class="flex flex-row justify-center items-center font-bold font-serif text-gray-700 text-xl my-4">
+<div class="cursor-pointer" x-data="newitem">
+<p x-text="message" @click="change"></p>
+
+</div>
+</div>
+
+
+
+<!--Example 4 dropdown-->
+<!--x-data="{open: false}"-->
+<!--@click="open= !open"-->
+<!--x-show="open"-->
+
+<div x-data="{open: false}" class="flesx flex-col justify-center items-center w-full">
+
+
+<div class="flex flex-row justify-center items-center">
+    <button @click="open= !open" class="bg-blue-700 text-sm text-gray-200 rounded-full px-4 py-2">Click me to open</button>
+</div>
+
+<div class="flex flex-row justify-center items-center mt-4">
+    <div x-show="open" class="flex flex-col justify-center items-center bg-gray-200 text-gray-700 shadow w-3/12">
+        <p class="py-2">Home</p>
+        <p class="py-2">About</p>
+        <p class="py-2">Contact</p>
+        
+    </div>
+</div>
+
+
+</div>
+
+<!--OR-->
+
+<!--toggle-->
+<div x-data="{open: false, toggle(){
+this.open = !this.open
+}
+}" class="flesx flex-col justify-center items-center w-full">
+
+
+<div class="flex flex-row justify-center items-center">
+    <button @click="toggle()" class="bg-pink-700 text-sm text-gray-200 rounded-full px-4 py-2">Click me to open</button>
+</div>
+
+
+<div class="flex flex-row justify-center items-center mt-4">
+    <div x-show="open" class="flex flex-col justify-center items-center bg-gray-200 text-gray-700 shadow w-3/12">
+        <p class="py-2">Home</p>
+        <p class="py-2">About</p>
+        <p class="py-2">Contact</p>
+        
+    </div>
+</div>
+
+
+</div>
+
+
+
+
+<!--OR FROM APP.JS-->
+
+
+<!--toggle-->
+<div x-data="dropdown" class="flesx flex-col justify-center items-center w-full">
+
+
+<div class="flex flex-row justify-center items-center">
+    <button @click="toggle" class="bg-pink-700 text-sm text-gray-200 rounded-full px-4 py-2">Click me to open</button>
+</div>
+
+<div class="flex flex-row justify-center items-center mt-4">
+    <div x-show="open" class="flex flex-col justify-center items-center bg-gray-200 text-gray-700 shadow w-3/12">
+        <p class="py-2">Home</p>
+        <p class="py-2">About</p>
+        <p class="py-2">Contact</p>
+        
+    </div>
+</div>
+
+
+</div>
+
+
+
+<!--Example 5 Data LessComponent-->
+<div class="flex flex-row justify-center items-center w-full">
+<div x-data @click="alert('hello somebody')">Click Me</div>
+</div>
+
+
+
+<!--Example 6 Data coming from store-->
+<div class="flex flex-col justify-center items-center text-xl">
+<div x-data x-text="$store.userdata.username"></div>
+
+</div>
+
+
+<!--Example 7  x-init-->
+
+<div x-init="console.log('init')"></div>
+
+<div x-data = "{
+init(){
+console.log('Hello friend')
+}
+}"></div>
+
+<div x-data="{todo: {}}"
+x-init ="todo = await((await fetch('https://jsonplaceholder.typicode.com/todos/1')).json())">
+
+<p x-text="todo.title"></p>
+</div>
+
+
+<!--Example 8 Scoping-->
+<div class="flex flex-col justify-center items-center bg-gray-300">
+<div x-data="{name: 'ebube', age: 30}">
+<div x-data="{name: 'victor', age: 32}">
+    <div x-data="{name: 'Amanda'}" class="text-center">
+        <p x-text="name" class="border-b-2 border-gray-800 w-full"></p>
+        <p x-text="age"></p>
+
+    </div>
+
+</div>
+
+</div>
+</div>
+
+
+
+<!--Example 9 Getters and setters-->
+
+<div x-data="{
+open: false,
+get isOpen(){
+return this.open
+},
+set isOpen(open){
+this.open = open
+},
+toggle(){
+this.isOpen = !this.isOpen
+}
+}" class="flesx flex-col justify-center items-center w-full">
+
+
+<div class="flex flex-row justify-center items-center">
+<button @click="toggle()" class="bg-pink-700 text-sm text-gray-200 rounded-full px-4 py-2">Click me to open</button>
+</div>
+
+
+<div class="flex flex-row justify-center items-center mt-4">
+<div x-show="open" class="flex flex-col justify-center items-center bg-gray-200 text-gray-700 shadow w-3/12">
+<p class="py-2">Home</p>
+<p class="py-2">About</p>
+<p class="py-2">Contact</p>
+
+</div>
+</div>
+
+
+</div>
+
+
+<!--Example 10 x-show and x-transition-->
+<!--x-transition.duration.500ms, x-transition.enter.duration.500ms, x-transition.leave.duration.1000ms-->
+<!--x-transition.delay.50ms, x-transition.opacity,x-transition.scale.50,x-transition.scale.origin.top-->
+
+
+<div x-data="{
+open: false,
+toggle(){
+this.open = !this.open
+}
+}" class="flesx flex-col justify-center items-center w-full">
+
+
+<div class="flex flex-row justify-center items-center">
+<button @click="toggle" class="bg-pink-700 text-sm text-gray-200 rounded-full px-4 py-2">Click me to open</button>
+</div>
+
+
+<div class="flex flex-row justify-center items-center mt-4">
+<div x-show="open" x-transition.duration.500ms x-transition.scale.50 class="flex flex-col justify-center items-center bg-gray-200 text-gray-700 shadow w-3/12">
+<p class="py-2">Home</p>
+<p class="py-2">About</p>
+<p class="py-2">Contact</p>
+
+</div>
+</div>
+
+
+</div>
+
+
+
+<!--Example 11 x-if-->
+<!--<template x-if="open">....</template>-->
+<div x-data="{
+open: false,
+toggle(){
+this.open = !this.open
+}
+}" class="flesx flex-col justify-center items-center w-full">
+
+
+<div class="flex flex-row justify-center items-center">
+<button @click="toggle" class="bg-blue-700 text-sm text-gray-200 rounded-full px-4 py-2">Click me to open</button>
+</div>
+
+
+<div class="flex flex-row justify-center items-center mt-4">
+<template x-if="open">
+<div class="flex flex-col justify-center items-center bg-gray-200 text-gray-700 shadow w-3/12">
+    <p class="py-2">Home</p>
+    <p class="py-2">About</p>
+    <p class="py-2">Contact</p>
+    
+</div>
+</template>
+
+</div>
+
+
+</div>
+
+<!--Example 12 x-for-->
+<div class="flex flex-col justify-center items-center">
+
+<div class="" x-data="{posts: [{id: 1, title: 'post 1'}, {id: 2, title: 'post 2'}]}">
+<template x-for="p in posts" :key="p.id">
+    <h2 x-text="p.id + ' ' + p.title"></h2>
+</template>
+</div>
+
+
+<div x-data="{family: [{id: 1, mother: 'Mrs Joseph Arthur'}, {id: 2, mother: 'Mrs Felicia Offor'}]}">
+<template x-for="f in family" :key="f.id">
+<p x-text="f.id + ' ' + f.mother"></p>
+</template>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!--Example 13 x-for in range-->
+<div x-data>
+<template x-for="n in 5">
+<p x-text="n"></p>
+</template>
+</div>
+
+
+
+<!--Example 14 x-bind: class-->
+<div class="flex flex-col justify-center items-center">
+<div x-data="{clicked: false}">
+<button x-bind:class="clicked ? 'styling' : ''" @click ="clicked = !clicked" class="rounded-full py-2 px-4 bg-pink-500 text-sm text-gray-700">Send Us a Message</button>
+
+</div>
+
+<style>
+.styling {
+    color: white;
+    background: green;
+    border-top: 2px solid red;
+}
+</style>
+
+
+<div x-data="{clicked: false}">
+<button x-bind:class="clicked ? 'design' : ''" @click="clicked = true" class="rounded-full py-2 px-4 bg-blue-700 text-gray-200 hover:scale-90">Click me stupid</button>
+
+</div>
+
+<style>
+.design {
+    color: black;
+    background: pink; 
+
+}
+</style>
+
+
+
+
+<div x-data="design">
+<button x-bind:class="clicked ? 'design' : ''" @click="change" class="rounded-full py-2 px-4 bg-blue-700 text-gray-200 hover:scale-90">Click me stupid</button>
+
+</div>
+
+<style>
+.design {
+    color: black;
+    background: pink; 
+
+}
+</style>
+
+
+<div x-data="design">
+<button :class="{styling: clicked}" @click ="change" class="rounded-full py-2 px-4 bg-pink-500 text-sm text-gray-700">Send Us a Message</button>
+
+</div>
+
+<style>
+.styling {
+    color: white;
+    background: green;
+    border-top: 2px solid red;
+}
+</style>
+</div>
+
+
+
+
+<!--Example 15 x-bind:style-->
+<div class="flex flex-col justify-center items-center mt-4">
+<div x-data="design">
+<button :style="{backgroundColor: clicked ? 'red' : ''}" @click="change" class="rounded-full py-2 px-4 bg-blue-700 text-gray-200 hover:scale-90">Testing</button>
+
+</div>
+
+</div>
+
+
+<!--Example 16 x-bind:id-->
+<div class="flex flex-col justify-center items-center mt-4">
+<button x-data="{id: ''}" 
+:id="id" @click="id = Math.round(Math.random() * 10000)">Button</button>
+</div>
+
+
+
+<!--Challenge-->
+<div class="flex flex-col justify-center items-center mt-4">
+<div x-data="{colors: ['red', 'green', 'pink'], clicked: false}">
+<template x-for="color in colors" :key="color">
+    <div :class="{fancy: clicked}" @click="clicked = !clicked" :style="{backgroundColor: color}" class="py-12 px-12 text-gray-200 inline-block">
+Hello
+    </div>
+</template>
+
+</div>
+<style>
+.fancy {
+    color: black;
+}
+</style>
+</div>
+
+
+
+<!--Example 17 x-on-->
+<div x-data @scroll.window="console.log('scroll')" @edit="console.log('edit triggered')" class="flex flex-col justify-center items-center w-full" >
+<button @click="console.log('click 1')">Click 1</button>
+<input type="text" @keyup.enter="console.log('key enter')" class="my-2 rounded-lg border-2 border-gray-500 bg-gray-300 py-2 px-4 w-full md:w-1/3" />
+
+<input type="text" @keyup.once="console.log('key once')" class="my-2 rounded-lg border-2 border-gray-500 bg-gray-300 py-2 px-4 md:w-1/3 w-full" />
+
+<input type="text" @keyup.debounce="console.log('key debounce')" class="my-2 rounded-lg border-2 border-gray-500 bg-gray-300 py-2 px-4 w-full md:w-1/3" />
+
+
+
+<div x-data="{modal: false}">
+<button @click="modal = true" class="rounded-full py-2 px-4 bg-blue-700 text-gray-200 text-sm" >Show Modal</button>
+<p x-show="modal" @click.outside="modal = false">Content is here</p>
+
+</div>
+
+
+<button @click="$dispatch('edit')" class="rounded-full py-2 px-4 bg-blue-700 text-gray-200 text-sm" >Edit</button>
+
+
+
+
+</div>
+
+
+<!--Example 18 x-model-->
+
+<div x-data="{keyword: null}" class="flex flex-col justify-center items-center w-full">
+<input type="text" x-model="keyword" class="my-2 rounded-lg border-2 border-gray-500 bg-gray-300 py-2 px-4 w-full md:w-1/3">
+
+<p x-text="keyword"></p>
+</div>
+
+<div x-data="{message: ''}" class="flex flex-col justify-center items-center w-full">
+<input type="text" x-model="message" class="my-2 rounded-lg border-2 border-gray-500 bg-gray-300 py-2 px-4 w-full md:w-1/3">
+
+<button @click="message = Math.round(Math.random() * 10000)" class="rounded-full py-2 px-4 bg-blue-700 text-gray-200 text-sm" >change text</button>
+
+</div>
+
+<!--Challenge-->
+
+
+<div x-data="{text: null, bg: null, id: null}" class="flex flex-col justify-center items-center mt-4 w-full">
+    <button :id="id" x-text="text" :style="{backgroundColor: bg}" class="rounded-full py-2 px-4 bg-blue-700 text-gray-200 text-sm" >change id</button>
+    
+  
+<input type="text" x-model="text" placeholder="change button text" class="my-2 rounded-lg border-2 border-gray-500 bg-gray-300 py-2 px-4 md:w-1/3 w-full">
+    
+ 
+    <input type="text" x-model="bg" placeholder="change button background color" class="my-2 rounded-lg border-2 border-gray-500 bg-gray-300 py-2 px-4 md:w-1/3 w-full">
+    <input type="text" x-model="id" placeholder="ID" class="my-2 rounded-lg border-2 border-gray-500 bg-gray-300 py-2 px-4 md:w-1/3 w-full">
+
+  
+    
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--Example 19 x-effect-->
+<div class="flex flex-col justify-center items-center">
+<div x-data="{name: 'Zura', message: null}">
+<p x-effect="message='Hello' + ' ' + name"></p>
+<p x-text="message"></p>
+<button @click="name = 'John'" class="rounded-full py-2 px-4 bg-blue-700 text-gray-200 text-sm" >change name</button>
+       
+
+</div>
+
+</div>
+
+
+<div class="flex flex-col justify-center items-center">
+<div x-data="{number: 40, message: null}">
+<p x-effect="message= 'Your number is:' + ' ' + number"></p>
+<p x-text="message"></p>
+<button @click="number = Math.round(Math.random() * 10000)" class="rounded-full py-2 px-4 bg-blue-700 text-gray-200 text-sm" >change name</button>
+
+
+</div>
+
+</div>
+
+
+
+
+<!--Example 20 x-ignore-->
+<div x-data="{name: 'ebube'}" class="flex flex-col justify-center items-center">
+<div x-ignore>
+ <p x-text="name" class="text-4xl text-gray-700"></p>
+</div>
+
+
+</div>
+
+
+<!--Example 21 x-ref-->
+
+<div x-data class="flex flex-col justify-center items-center w-full">
+
+<input x-ref="inputEmail" type="text" placeholder="change border" class="my-2 rounded-lg border-2 border-gray-500 bg-gray-300 py-2 px-4 w-full md:w-1/3">
+  
+<button @click="$refs.inputEmail.style.borderColor= 'red'" class="rounded-full py-2 px-4 bg-blue-700 text-gray-200 text-sm" >click to change border</button>
+    
+</div>
+
+
+<!--Example 22 x-cloak-->
+
+<div x-data="dropdown" class="flesx flex-col justify-center items-center w-full mt-4">
+
+
+<div class="flex flex-row justify-center items-center">
+<button @click="toggle" class="bg-pink-700 text-sm text-gray-200 rounded-full px-4 py-2">Click me to fix by adding cloak</button>
+</div>
+
+<div class="flex flex-row justify-center items-center mt-4">
+<div x-show="open" x-cloak class="flex flex-col justify-center items-center bg-gray-200 text-gray-700 shadow w-3/12">
+    <p class="py-2">Home</p>
+    <p class="py-2">About</p>
+    <p class="py-2">Contact</p>
+    
+</div>
+<style>
+[x-cloak] {
+display: none !important;
+}
+</style>
+
+</div>
+
+
+</div>
+
+
+<!--Example 23 x-teleport-->
+
+<div id="tel" class="w-full flex flex-col justify-center items-center"></div>
+
+<div x-data class="flex flex-col justify-center items-center w-full">
+    
+<p>Some text here</p>
+
+<div x-data="{modal: false}" >
+<button @click="modal= true" class="rounded-full py-2 px-4 bg-blue-700 text-gray-200 text-sm" >click to change border</button>
+
+<template x-teleport="#tel" >
+    
+    <div x-show="modal" @click.outside="modal= false"class="flex flex-col justify-center items-center bg-gray-200 text-gray-700 shadow w-full md:w-1/3">
+        <div class="max-w-4xl w-full flex flex-col justify-center items-center">
+        <p class="py-2">Home</p>
+        <p class="py-2">About</p>
+        <p class="py-2">Contact</p>
+        </div>
+    </div>
+</template>
+
+
+</div>
+
+<p>Another text here</p>
+
+
+
+</div>
+
+
+
+
+
+<!--Example 24 x-Magic Properties-->
+<!--$el-->
+<div x-data x-init="console.log('init', $el)">
+    <button @click="console.log($el)" class="bg-pink-700 text-sm text-gray-200 rounded-full px-4 py-2">Button</button>
+
+</div>
+
+
+
+<!--Example 25 $watch-->
+<div x-data="{modal: false}" x-init="$watch('modal', (val, old) => console.log(val, old))">
+    <button @click="modal= !modal" class="bg-pink-700 text-sm text-gray-200 rounded-full px-4 py-2">$watch</button>
+
+</div>
+
+
+<!--Example 26 $nextTick-->
+<div x-data="{name: 'Zura'}">
+    <button @click="name= 'John'; $nextTick(() => console.log($refs.p.innerText))" class="bg-pink-700 text-sm text-gray-200 rounded-full px-4 py-2">Change button</button>
+    <p x-text="name" x-ref="p"></p>
+
+</div>
+
+
+<!--Example 27 $root-->
+
+<div x-data id="1">
+    <div>
+        <div x-data id="2">
+            <div>
+                <button @click="console.log($root)" class="bg-pink-700 text-sm text-gray-200 rounded-full px-4 py-2">Button</button>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+      
+       
+
+<!--Example 28 $root-->
+<div x-data="{name: 'Zura'},">
+    <div>
+        <button @click="console.log($data.name)"  class="bg-pink-700 text-sm text-gray-200 rounded-full px-4 py-2">data</button>
+    </div>
+
+</div>
+
+
+
+<!--Example 29 $id-->
+<div x-data="{id: $id('text-input')}" class="w-full flex flex-col justify-center items-center">
+    <label :for="id" class="sr-only"></label>
+    <input type="text" :id="id" placeholder="change button text" class="my-2 rounded-lg border-2 border-gray-500 bg-gray-300 py-2 px-4 md:w-1/3 w-full">
+    
+</div>
+
+<div x-data  class="w-full flex flex-col justify-center items-center">
+    <div x-id="['text-input']" class="w-full flex flex-col justify-center items-center">
+        <label :for="$id('text-input')"></label>
+        <input type="text" :id="$id('text-input')" placeholder="change button text" class="my-2 rounded-lg border-2 border-gray-500 bg-gray-300 py-2 px-4 md:w-1/3 w-full">
+        
+    
+    </div>
+</div>
+
+
+
+
+
+
+    </body>
+
+</html>
